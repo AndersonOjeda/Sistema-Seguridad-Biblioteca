@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Seguridad Biblioteca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="hero">
+        <p class="eyebrow">Acceso protegido</p>
+        <h1>Biblioteca con autenticacion en dos pasos</h1>
+        <p class="lead">
+          Ingresa con tus credenciales, valida el codigo enviado al correo y accede
+          a tu espacio de trabajo sin salir de esta pantalla.
+        </p>
+        <div class="hero-summary">
+          <article>
+            <span>Inicio rapido</span>
+            <strong>Login + 2FA</strong>
+          </article>
+          <article>
+            <span>Estado</span>
+            <strong>Sesion persistente</strong>
+          </article>
+        </div>
+      </aside>
+
+      <main class="panel">
+        <section class="auth-grid">
+          <section class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Paso 1</p>
+              <h2>Solicitar codigo</h2>
+              <p class="section-copy">Escribe tu correo y contrasena para recibir el codigo de acceso.</p>
+            </div>
+            <form id="step1-form" class="form">
+              <label>
+                Correo
+                <input id="email" name="email" type="email" placeholder="correo@ejemplo.com" required />
+              </label>
+              <label>
+                Contrasena
+                <input id="password" name="password" type="password" placeholder="Tu contrasena" required />
+              </label>
+              <button type="submit">Enviar codigo</button>
+            </form>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Paso 2</p>
+              <h2>Verificar codigo</h2>
+              <p class="section-copy">Cuando recibas el correo, ingresa el codigo para abrir tu sesion.</p>
+            </div>
+            <form id="step2-form" class="form">
+              <label>
+                Codigo 2FA
+                <input id="codigo" name="codigo" type="text" inputmode="numeric" placeholder="0000" required />
+              </label>
+              <button type="submit">Ingresar</button>
+            </form>
+          </section>
+        </section>
+
+        <section class="card">
+          <div class="section-heading">
+            <p class="eyebrow">Sesion</p>
+            <h2>Estado y acciones</h2>
+            <p class="section-copy">Consulta tu rol, carga tu panel y renueva el token si la sesion expira.</p>
+          </div>
+          <div class="actions">
+            <button id="load-panel" type="button">Cargar mi panel</button>
+            <button id="refresh-session" type="button" class="secondary">Refrescar access token</button>
+            <button id="logout" type="button" class="ghost">Cerrar sesion</button>
+          </div>
+          <div class="status-grid">
+            <article>
+              <span>Correo activo</span>
+              <strong id="active-email">Sin definir</strong>
+            </article>
+            <article>
+              <span>Rol detectado</span>
+              <strong id="active-role">Sin sesion</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="card output-card">
+          <div class="section-heading">
+            <p class="eyebrow">Respuesta</p>
+            <h2>Panel de datos</h2>
+            <p class="section-copy">Aqui veras la respuesta de la API y el contenido del panel segun tu rol.</p>
+          </div>
+          <pre id="output">Esperando acciones...</pre>
+        </section>
+
+        <section class="message" id="message-box" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
