@@ -30,8 +30,8 @@ let usuarios = [
   },
   {
     id: 2,
-    email: "samuelibbbbb@gmail.com",
-    password: "1234",
+    email: "anderozface@gmail.com",
+    password: "250803",
     rol: "estudiante",
     codigo2FA: null,
     refreshToken: null,
@@ -195,7 +195,7 @@ app.post("/refresh-token", (req, res) => {
     const nuevoAccessToken = jwt.sign(
       { id: usuario.id, rol: usuario.rol },
       process.env.JWT_SECRET,
-      { expiresIn: "15s" }
+      { expiresIn: "5m" }
     )
 
     res.json({ accessToken: nuevoAccessToken })
